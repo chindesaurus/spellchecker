@@ -19,14 +19,21 @@
 #define BUCKET_COUNT 509
 
 /* number of words loaded in dictionary */
-unsigned int SIZE = 0;
+static unsigned int SIZE = 0;
 
+/* defines a node of the table */
 typedef struct node {
     char word[LENGTH + 1];
     struct node *next;
 } node;
 
+
 node *table[BUCKET_COUNT] = { NULL };
+
+
+/* static function prototypes */
+static int hash(char *word);
+static void toLowerCase(char *word); 
 
 
 /**
@@ -141,7 +148,7 @@ unload(void) {
  * Copypasta from COS 217.
  * Returns a hash code in [0, BUCKET_COUNT - 1] for word.
  */
-int
+static int
 hash(char *word) {
     assert(word != NULL);
     
@@ -160,7 +167,7 @@ hash(char *word) {
 /**
  * Converts every letter of word to lower case.
  */
-void
+static void
 toLowerCase(char *word) {
     for (int i = 0; word[i]; i++)
         word[i] = tolower(word[i]);
