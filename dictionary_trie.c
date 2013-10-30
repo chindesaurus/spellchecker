@@ -169,7 +169,7 @@ unload(void) {
 /**
  * Frees all nodes above curr.
  */
-void
+static void
 freeNode(node *curr) {
 
     if (curr == NULL)
