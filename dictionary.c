@@ -16,7 +16,7 @@
 #include "dictionary.h"
 
 /* array size of hash table */
-#define BUCKET_COUNT 509
+#define BUCKET_COUNT 65521
 
 /* number of words loaded in dictionary */
 static unsigned int SIZE = 0;
@@ -27,8 +27,7 @@ typedef struct node {
     struct node *next;
 } node;
 
-
-node *table[BUCKET_COUNT] = { NULL };
+static node *table[BUCKET_COUNT] = { NULL };
 
 
 /* static function prototypes */
@@ -87,7 +86,12 @@ load(const char* dictionary) {
         }  
  
         // read a word from the dictionary    
-        fscanf(dict, "%s", new->word);
+        int check = fscanf(dict, "%s", new->word);
+        
+        // keep track of how many words are loaded in dictionary
+        if (check == 1)
+            SIZE += 1;
+
  
         /* put the new node in the hash table */
         int index = hash(new->word);
@@ -103,8 +107,6 @@ load(const char* dictionary) {
             table[index] = new;
         }
 
-        // keep track of how many words are loaded in dictionary
-        SIZE += 1;
     }
     fclose(dict);
    
