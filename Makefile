@@ -15,7 +15,7 @@ HDRS = dictionary.h
 LIBS =
 
 # space-separated list of source files
-SRCS = speller.c dictionary.c
+SRCS = speller.c dictionary_hash.c
 
 # automatically generated list of object files
 OBJS = $(SRCS:.c=.o)

@@ -1,7 +1,8 @@
 /*
- * @(#) dictionary.c
+ * @(#) dictionary_hash.c
  *
- * Implements a dictionary's functionality.
+ * Implements a dictionary's functionality 
+ * using a hash table.
  *
  * @author chindesaurus
  * @version 1.00
